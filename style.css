@@ -1,0 +1,395 @@
+:root {
+    --bg-pink: #FFF0F5;
+    --card-pink: #FFE4E1;
+    --accent-pink: #FFB6C1;
+    --dark-pink: #DB7093;
+    --pastel-purple: #E6E6FA;
+    --pastel-yellow: #FFF9C4;
+    --pastel-blue: #E0F7FA;
+    --pastel-green: #E8F5E9;
+    --text-color: #5D4037;
+    --font-heading: 'Fredoka', cursive, sans-serif;
+    --font-body: 'Nunito', sans-serif;
+    --font-hand: 'Sacramento', cursive;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+body {
+    background-color: var(--bg-pink);
+    background-image: 
+        radial-gradient(#FFB6C1 1px, transparent 1px),
+        radial-gradient(#FFB6C1 1px, #FFF0F5 1px);
+    background-size: 40px 40px;
+    background-position: 0 0, 20px 20px;
+    font-family: var(--font-body);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 15px;
+    overflow-x: hidden;
+}
+
+#confetti-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 999;
+}
+
+#music-controls {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    z-index: 1000;
+}
+
+#music-controls button {
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid var(--accent-pink);
+    border-radius: 20px;
+    padding: 8px 15px;
+    font-family: var(--font-body);
+    font-weight: 700;
+    color: var(--dark-pink);
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    transition: all 0.2s;
+}
+
+#music-controls button:active {
+    transform: scale(0.95);
+}
+
+.page-card {
+    background: rgba(255, 255, 255, 0.95);
+    border: 4px solid var(--accent-pink);
+    border-radius: 28px;
+    width: 100%;
+    max-width: 480px;
+    min-height: 520px;
+    padding: 30px 24px;
+    box-shadow: 0 12px 30px rgba(219, 112, 147, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes popIn {
+    from { opacity: 0; transform: scale(0.9) translateY(10px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+h1.main-title {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    color: var(--dark-pink);
+    margin-bottom: 8px;
+    line-height: 1.2;
+}
+
+h2.sub-title {
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    color: #886070;
+    font-weight: 600;
+    margin-bottom: 24px;
+}
+
+p.content-text {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text-color);
+    margin-bottom: 20px;
+}
+
+.decor-icon {
+    font-size: 3.5rem;
+    margin: 12px 0;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--accent-pink), var(--dark-pink));
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 14px 32px;
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    cursor: pointer;
+    box-shadow: 0 6px 15px rgba(219, 112, 147, 0.4);
+    transition: transform 0.15s, box-shadow 0.15s;
+    margin-top: 15px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: auto;
+}
+
+.btn-primary:active {
+    transform: translateY(2px) scale(0.98);
+    box-shadow: 0 3px 8px rgba(219, 112, 147, 0.3);
+}
+
+.btn-disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: #ccc !important;
+    box-shadow: none !important;
+}
+
+/* Lockpad styling */
+.lockpad-display {
+    background: var(--pastel-purple);
+    border: 3px dashed var(--dark-pink);
+    border-radius: 16px;
+    width: 80%;
+    padding: 12px;
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    letter-spacing: 8px;
+    color: var(--dark-pink);
+    margin: 15px 0 20px 0;
+    min-height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lockpad-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    width: 80%;
+    max-width: 260px;
+}
+
+.lockpad-btn {
+    background: white;
+    border: 2px solid var(--accent-pink);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    margin: 0 auto;
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    color: var(--dark-pink);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    transition: background-color 0.1s, transform 0.1s;
+}
+
+.lockpad-btn:active {
+    background: var(--card-pink);
+    transform: scale(0.92);
+}
+
+.lockpad-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.lockpad-action-btn {
+    background: var(--pastel-yellow);
+    border: 2px solid #FBC02D;
+    border-radius: 12px;
+    padding: 8px 16px;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: #5D4037;
+    cursor: pointer;
+}
+
+/* Letter Envelope Styling */
+.envelope-container {
+    background: var(--pastel-yellow);
+    border: 2px solid #FBC02D;
+    border-radius: 20px;
+    padding: 20px;
+    margin: 15px 0;
+    position: relative;
+    max-height: 280px;
+    overflow-y: auto;
+    text-align: left;
+}
+
+.envelope-flower-btn {
+    font-size: 3rem;
+    cursor: pointer;
+    background: none;
+    border: none;
+    animation: pulse 1.5s infinite alternate;
+}
+
+@keyframes pulse {
+    from { transform: scale(1); }
+    to { transform: scale(1.15); }
+}
+
+/* Secret Whispers Buttons */
+.whisper-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    margin: 15px 0;
+}
+
+.whisper-btn {
+    background: var(--pastel-purple);
+    border: 2px solid #B39DDB;
+    border-radius: 16px;
+    padding: 14px;
+    font-family: var(--font-heading);
+    color: #4A148C;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.04);
+}
+
+.whisper-btn:active {
+    transform: scale(0.97);
+}
+
+.whisper-btn.read {
+    background: #E8EAF6;
+    border-color: #C5CAE9;
+    color: #7986CB;
+}
+
+/* Note Display Box */
+.note-box {
+    background: #FFFDE7;
+    border: 2px dashed #FBC02D;
+    border-radius: 18px;
+    padding: 20px;
+    text-align: left;
+    margin: 15px 0;
+    font-size: 0.98rem;
+    line-height: 1.6;
+    width: 100%;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+/* Quiz Options Buttons */
+.quiz-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    margin: 20px 0;
+}
+
+.quiz-opt-btn {
+    background: white;
+    border: 2px solid var(--accent-pink);
+    border-radius: 14px;
+    padding: 12px 16px;
+    text-align: left;
+    font-family: var(--font-body);
+    font-weight: 700;
+    color: var(--text-color);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.quiz-opt-btn:active {
+    background: var(--card-pink);
+}
+
+/* Text Input Styling */
+.custom-input {
+    width: 100%;
+    padding: 14px 18px;
+    border: 2px solid var(--accent-pink);
+    border-radius: 16px;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    outline: none;
+    margin: 15px 0;
+    transition: border-color 0.2s;
+}
+
+.custom-input:focus {
+    border-color: var(--dark-pink);
+    box-shadow: 0 0 8px rgba(219, 112, 147, 0.3);
+}
+
+/* Scoreboard List */
+.score-list {
+    width: 100%;
+    max-height: 250px;
+    overflow-y: auto;
+    margin: 15px 0;
+    text-align: left;
+}
+
+.score-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 12px;
+    border-bottom: 1px dashed #FFB6C1;
+    font-size: 0.9rem;
+}
+
+.score-item.correct {
+    color: #2E7D32;
+    background: #E8F5E9;
+    border-radius: 8px;
+}
+
+.score-item.wrong {
+    color: #C62828;
+    background: #FFEBEE;
+    border-radius: 8px;
+}
+
+/* Memory Match Game Grid */
+.memory-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    width: 100%;
+    margin: 20px 0;
+}
+
+.memory-card {
+    background: var(--pastel-purple);
+    border: 2px solid #B39DDB;
+    border-radius: 12px;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.memory-card.flipped {
+    background: white;
+    transform: rotateY(180deg);
+}
